@@ -1,0 +1,686 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.glitch {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                 0.025em 0.04em 0 #fffc00;
+    animation: glitch 725ms infinite;
+}
+
+.glitch:before,
+.glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch:before {
+    animation: glitch-top 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    transform: translate(-0.04em, -0.03em);
+    opacity: 0.75;
+}
+
+.glitch:after {
+    animation: glitch-bottom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    transform: translate(0.04em, 0.03em);
+    opacity: 0.75;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-top {
+    0%, 100% { transform: translate(-0.04em, -0.03em); }
+    10% { transform: translate(-0.04em, -0.03em); }
+    20% { transform: translate(-0.02em, -0.05em); }
+    30% { transform: translate(-0.03em, -0.03em); }
+    40% { transform: translate(-0.02em, -0.04em); }
+}
+
+@keyframes glitch-bottom {
+    0%, 100% { transform: translate(0.04em, 0.03em); }
+    10% { transform: translate(0.04em, 0.03em); }
+    20% { transform: translate(0.02em, 0.05em); }
+    30% { transform: translate(0.03em, 0.03em); }
+    40% { transform: translate(0.02em, 0.04em); }
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+.floating-icons {
+    margin-top: 50px;
+}
+
+.floating-icons i {
+    font-size: 2rem;
+    margin: 0 20px;
+    animation: float 3s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.5s);
+}
+
+.floating-icons i:nth-child(1) { --i: 1; }
+.floating-icons i:nth-child(2) { --i: 2; }
+.floating-icons i:nth-child(3) { --i: 3; }
+.floating-icons i:nth-child(4) { --i: 4; }
+.floating-icons i:nth-child(5) { --i: 5; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Squad Section */
+.squad-section {
+    padding: 100px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.squad-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* Base Member Card */
+.member-card {
+    padding: 30px;
+    text-align: center;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Character-Specific Card Themes */
+
+/* Hariom - Developer Theme (Matrix/Code vibes) */
+.developer-card {
+    background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #0f3460 100%);
+    border: 2px solid #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.developer-card:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.5), 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.developer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 98px,
+            rgba(0, 255, 65, 0.1) 100px
+        );
+    pointer-events: none;
+}
+
+/* Aditya - Gaming Theme (Neon Gaming vibes) */
+.gamer-card {
+    background: linear-gradient(135deg, #ff006e 0%, #8338ec 50%, #3a86ff 100%);
+    border: 2px solid #ff073a;
+    box-shadow: 0 0 20px rgba(255, 7, 58, 0.3);
+}
+
+.gamer-card:hover {
+    box-shadow: 0 0 30px rgba(255, 7, 58, 0.5), 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.gamer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 7, 58, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(131, 56, 236, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Sudhanshu - Energy Theme (Bournvita/Fitness vibes) */
+.energy-card {
+    background: linear-gradient(135deg, #ff8500 0%, #ffb700 50%, #ff8500 100%);
+    border: 2px solid #ffd60a;
+    box-shadow: 0 0 20px rgba(255, 214, 10, 0.3);
+}
+
+.energy-card:hover {
+    box-shadow: 0 0 30px rgba(255, 214, 10, 0.5), 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.energy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        conic-gradient(from 0deg at 50% 50%, 
+            rgba(255, 214, 10, 0.1) 0deg,
+            transparent 60deg,
+            rgba(255, 183, 0, 0.1) 120deg,
+            transparent 180deg,
+            rgba(255, 133, 0, 0.1) 240deg,
+            transparent 300deg,
+            rgba(255, 214, 10, 0.1) 360deg
+        );
+    pointer-events: none;
+}
+
+/* Sahil - Gojo/Mystic Theme (Blue mystic vibes) */
+.mystic-card {
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 50%, #90e0ef 100%);
+    border: 2px solid #caf0f8;
+    box-shadow: 0 0 20px rgba(202, 240, 248, 0.3);
+}
+
+.mystic-card:hover {
+    box-shadow: 0 0 30px rgba(202, 240, 248, 0.5), 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.mystic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse at top, rgba(202, 240, 248, 0.2) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(0, 180, 216, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Yuvraj - Leadership Theme (Royal Gold vibes) */
+.leader-card {
+    background: linear-gradient(135deg, #b7410e 0%, #ffba08 50%, #f48c06 100%);
+    border: 2px solid #ffd60a;
+    box-shadow: 0 0 20px rgba(255, 214, 10, 0.3);
+}
+
+.leader-card:hover {
+    box-shadow: 0 0 30px rgba(255, 214, 10, 0.5), 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.leader-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 214, 10, 0.1) 12px,
+            rgba(255, 214, 10, 0.1) 14px,
+            transparent 16px
+        );
+    pointer-events: none;
+}
+
+/* Avatar with Image */
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+    border-color: #ffd700;
+}
+
+.avatar:hover img {
+    transform: scale(1.1);
+}
+
+.role {
+    font-size: 1.2rem;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.skill-bar {
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.progress {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+/* Character-specific progress fills */
+.developer-fill {
+    background: linear-gradient(90deg, #00ff41, #00cc33);
+}
+
+.gamer-fill {
+    background: linear-gradient(90deg, #ff073a, #ff6b6b);
+}
+
+.energy-fill {
+    background: linear-gradient(90deg, #ffd60a, #ffb700);
+}
+
+.mystic-fill {
+    background: linear-gradient(90deg, #caf0f8, #00b4d8);
+}
+
+.leader-fill {
+    background: linear-gradient(90deg, #ffd60a, #f48c06);
+}
+
+.fill {
+    height: 100%;
+    border-radius: 10px;
+    animation: fillUp 2s ease-out;
+}
+
+@keyframes fillUp {
+    from { width: 0; }
+}
+
+.quotes {
+    font-style: italic;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border-left: 4px solid currentColor;
+    position: relative;
+    z-index: 1;
+}
+
+.fun-facts {
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Character-specific tags */
+.developer-tag {
+    background: linear-gradient(45deg, #00ff41, #00cc33);
+    color: #000;
+}
+
+.gamer-tag {
+    background: linear-gradient(45deg, #ff073a, #ff6b6b);
+    color: #fff;
+}
+
+.energy-tag {
+    background: linear-gradient(45deg, #ffd60a, #ffb700);
+    color: #000;
+}
+
+.mystic-tag {
+    background: linear-gradient(45deg, #caf0f8, #00b4d8);
+    color: #000;
+}
+
+.leader-tag {
+    background: linear-gradient(45deg, #ffd60a, #f48c06);
+    color: #000;
+}
+
+.tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Memories Section */
+.memories-section {
+    padding: 100px 20px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.memory-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.memory-card:hover {
+    transform: scale(1.05);
+}
+
+.memory-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.memory-stats {
+    margin-top: 15px;
+    color: #ffd700;
+    font-weight: bold;
+}
+
+/* Achievements Section */
+.achievements {
+    padding: 100px 20px;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.achievement-item {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.achievement-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.achievement-item i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 100px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.squad-motto h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.social-links {
+    margin-top: 40px;
+}
+
+.social-btn {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin: 0 10px;
+    line-height: 60px;
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background: #ffd700;
+    color: #333;
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2.5rem;
+    }
+    
+    .squad-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar ul {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+/* Instagram Link Styles - Add करो existing CSS के अंत में */
+
+.instagram-link {
+    margin-top: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.insta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+.insta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.insta-btn i {
+    font-size: 1.2rem;
+}
+
+/* Character-specific Instagram button styles */
+.developer-insta {
+    background: linear-gradient(45deg, #00ff41, #00cc33);
+    color: #000;
+    border-color: #00ff41;
+}
+
+.developer-insta:hover {
+    background: linear-gradient(45deg, #00cc33, #009926);
+    box-shadow: 0 8px 20px rgba(0, 255, 65, 0.4);
+}
+
+.gamer-insta {
+    background: linear-gradient(45deg, #ff073a, #ff6b6b);
+    color: #fff;
+    border-color: #ff073a;
+}
+
+.gamer-insta:hover {
+    background: linear-gradient(45deg, #cc0529, #ff073a);
+    box-shadow: 0 8px 20px rgba(255, 7, 58, 0.4);
+}
+
+.energy-insta {
+    background: linear-gradient(45deg, #ffd60a, #ffb700);
+    color: #000;
+    border-color: #ffd60a;
+}
+
+.energy-insta:hover {
+    background: linear-gradient(45deg, #ffb700, #ff8500);
+    box-shadow: 0 8px 20px rgba(255, 214, 10, 0.4);
+}
+
+.mystic-insta {
+    background: linear-gradient(45deg, #caf0f8, #00b4d8);
+    color: #000;
+    border-color: #caf0f8;
+}
+
+.mystic-insta:hover {
+    background: linear-gradient(45deg, #00b4d8, #0077b6);
+    box-shadow: 0 8px 20px rgba(202, 240, 248, 0.4);
+}
+
+.leader-insta {
+    background: linear-gradient(45deg, #ffd60a, #f48c06);
+    color: #000;
+    border-color: #ffd60a;
+}
+
+.leader-insta:hover {
+    background: linear-gradient(45deg, #f48c06, #b7410e);
+    box-shadow: 0 8px 20px rgba(255, 214, 10, 0.4);
+}
+
+/* Mobile responsive for Instagram buttons */
+@media (max-width: 768px) {
+    .insta-btn {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .insta-btn i {
+        font-size: 1rem;
+    }
+}
